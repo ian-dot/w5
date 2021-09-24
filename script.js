@@ -7,13 +7,13 @@ var timer = setInterval(function(){
 
 
 const now = moment().format('HH')+':00'
-console.log(now)
+
 
 
 
 var colLength = ['', '-9', '']
 var colColors = ['', 'bg-success','bg-primary']
-var dayHours = ['9','10','11','12','13','14','15','16','17','18']
+var dayHours = ['08','09','10','11','12','13','14','15','16','17','18']
 var inputs = document.getElementById("my-form").elements;
 var inputByIndex = inputs[0];
 var inputEvent9 = inputs["Event9"];
@@ -65,19 +65,24 @@ for (let j =0; j<dayHours.length; j++){
             
         } 
         
-        // Validation for changing the color in the current hour      
+        // Validation for changing the color in the current hour  
+        
+        
         if(i===1 && dayHours[j]+':00'===now){
             colEl.addClass('bg-warning')
-            colEl.text("Current Hour")
-            // colEl.addId('now')
-
+            colEl.attr('placeholder', "Current Hour")
+            
+            
+           
         } 
         // Conditional for adding color to the rest of the columns
         else {
-
+           
+            
             colEl.addClass(colColors[i])
         }
-
+        
+        
     
         rowEl.append(colEl)        
     
@@ -95,12 +100,12 @@ function saveLastEvent(event) {
         // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
     }
     localStorage.setItem("eventDetails", JSON.stringify(eventDetails));
-    console.log(eventDetails);
+    
 }
 function renderLastEvent() {
     // Use JSON.parse() to convert text to JavaScript object
     var lastEvent = JSON.parse(localStorage.getItem("eventDetails"));
-    console.log(lastEvent);
+    
     // Check if data is returned, if not exit out of the function
     if (lastEvent !== null) {
         for (let i =0; i<dayHours.length;i++){
